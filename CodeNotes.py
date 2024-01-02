@@ -1,5 +1,25 @@
 'Following is a gathering of useful code snippets for statistical caclulations'
 
+## Numpy linear algebra.
+
+'Matrix manipulation and etcetera'
+
+from numpy import linalg as LA
+a = np.array([[1, 1j], [-1j, 1]])
+eigenvalues, eigenvectors = LA.eig(a)
+
+'''DOCUMENTATION:
+https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html'''
+
+'Singular vectors'
+import numpy.linalg.svd
+
+a = np.random.randn(9, 6) + 1j*np.random.randn(9, 6)
+U, S, Vh = np.linalg.svd(a, full_matrices=True)
+
+'''DOCUMENTATION:
+https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html'''
+
 ## Probability 1.
 
 ## Distribution functions
@@ -62,7 +82,7 @@ from scipy.stats import norm
 
 vals = norm.pdf(loc='mean', scale='standard deviation')
 
-'''Good sites bernoulli...
+'''Good sites norm...
 DOCUMENTATION:
 https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html
 
