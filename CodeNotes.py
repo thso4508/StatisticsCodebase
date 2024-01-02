@@ -88,6 +88,7 @@ for i in range(1,size):
 
 
 #Uniform Distribution
+        '''Following will create a uniform distribution based upon a list '''
 import numpy as np
 max_v = np.maximum(r_list)
 min_v = np.minimum(r_list)
