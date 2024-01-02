@@ -105,16 +105,16 @@ import sympy
 
 #Linear Congruent Generator
 'LCG'
-#gcd for b,m = 1
+#gcd for c,m = 1
 r_list = list(range(size))
 r_list[0] = seed
-a = random.random()+seed
+a = 4 * random.random(1,100) + 1
 c = sympy.randprime(1,100)
-m = sympy.randprime(1,100) # m should be power of 2
-while c < seed:
+m = 2^(sympy.randprime(1,100)) # m should be power of 2
+while c < seed and c != 2 :
         c = sympy.randprime(1,100)
-while m < seed:    
-        m = sympy.randprime(1,100)
+while m < seed and m != c:    
+        m = 2^(sympy.randprime(1,100))
 for i in range(1,size):
         r_list[i] = (((i * a) + c) % m)  
 
@@ -132,6 +132,12 @@ for i in range(1,len(r_list)):
                 r_list[i] = 0
 
  #Tests
+'MSE'
+from sklearn.metrics import mean_squared_error
+MSE = mean_squared_error(Y_true,Y_pred)
+
+#Also works
+MSE = np.square(np.subtract(Y_true,Y_pred)).mean() 
 
 'Wald test'
 
