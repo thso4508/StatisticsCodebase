@@ -3,7 +3,7 @@
 ## Numpy linear algebra.
 
 'Matrix manipulation and etcetera'
-
+import numpy as np
 from numpy import linalg as LA
 a = np.array([[1, 1j], [-1j, 1]])
 eigenvalues, eigenvectors = LA.eig(a)
@@ -12,7 +12,7 @@ eigenvalues, eigenvectors = LA.eig(a)
 https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html'''
 
 'Singular vectors'
-import numpy.linalg.svd
+from numpy.linalg import svd
 
 a = np.random.randn(9, 6) + 1j*np.random.randn(9, 6)
 U, S, Vh = np.linalg.svd(a, full_matrices=True)
@@ -21,6 +21,18 @@ U, S, Vh = np.linalg.svd(a, full_matrices=True)
 https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html'''
 
 ## Probability 1.
+
+'Confidence Interval'
+# count: Number of successes
+# nobs: Total number of trials
+# alpha: Significance level (default is 0.05)
+# method: Method to use for confidence interval (default is “normal”)
+
+from statsmodels.stats.proportion import proportion_confint
+proportion_confint(count, nobs, alpha=0.05, method='normal')
+
+'''DOCUMENTATION
+https://www.statsmodels.org/devel/generated/statsmodels.stats.proportion.proportion_confint.html'''
 
 ## Distribution functions
 
@@ -51,7 +63,7 @@ r = binom.rvs('number of tries' 'probability', size=1000)
 #In coinflip, we expect more results with 1 (50% occurrence of 1 head) than 0 or 2 (25% occurrence of either zero heads or two heads).
 
 mean, var, skew,  = binom.stats('number of tries', 'probability', moments='mvs')
-#The mean, variance, skewness, kurt
+#The mean, variance, skewness 
 
 '''Good sites binomial...
 DOCUMENTATION:
@@ -118,3 +130,8 @@ for i in range(1,len(r_list)):
                 r_list[i] = 1
         else:
                 r_list[i] = 0
+
+ #Tests
+
+'Wald test'
+
