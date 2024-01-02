@@ -15,7 +15,7 @@ https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html'''
 from numpy.linalg import svd
 
 a = np.random.randn(9, 6) + 1j*np.random.randn(9, 6)
-U, S, Vh = np.linalg.svd(a, full_matrices=True)
+U, S, Vh = svd(a, full_matrices=True)
 
 '''DOCUMENTATION:
 https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html'''
@@ -73,7 +73,6 @@ https://discovery.cs.illinois.edu/learn/Polling-Confidence-Intervals-and-Hypothe
 https://www.geo.fu-berlin.de/en/v/soga-py/Basics-of-statistics/Discrete-Random-Variables/The-Binomial-Distribution/The-Binomial-Distribution/index.html'''
 
 
-
 'Bernoulli probability distr functions'
 from scipy.stats import bernoulli
 
@@ -104,13 +103,14 @@ https://proclusacademy.com/blog/practical/normal-distribution-python-scipy/'''
 import random
 import sympy
 
-#For a Linear Congruent Generator c and m should be a random prime number
+#Linear Congruent Generator
 'LCG'
+#gcd for b,m = 1
 r_list = list(range(size))
 r_list[0] = seed
 a = random.random()+seed
 c = sympy.randprime(1,100)
-m = sympy.randprime(1,100)
+m = sympy.randprime(1,100) # m should be power of 2
 while c < seed:
         c = sympy.randprime(1,100)
 while m < seed:    
@@ -124,7 +124,7 @@ for i in range(1,size):
 import numpy as np
 max_v = np.maximum(r_list)
 min_v = np.minimum(r_list)
-treshold = max_v - min_v
+treshold = (max_v - min_v)/2
 for i in range(1,len(r_list)):
         if r_list[i] > treshold:
                 r_list[i] = 1
