@@ -131,6 +131,17 @@ for i in range(1,len(r_list)):
         else:
                 r_list[i] = 0
 
+
+# Markov Chain
+        '''Following will create markov chains'''
+start = 0
+x = []
+n = 10000
+for i in range(n):
+    step = np.random.choice([-1,1],p=[0.5,0.5])
+    start = start + step
+    x.append(start)
+
  #Tests
 'MSE'
 from sklearn.metrics import mean_squared_error
