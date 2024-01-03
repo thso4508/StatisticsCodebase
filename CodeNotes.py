@@ -31,6 +31,14 @@ https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html'''
 from statsmodels.stats.proportion import proportion_confint
 proportion_confint(count, nobs, alpha=0.05, method='normal')
 
+#There is a Hoeffdings inequality confidence interval in Utils.py
+def compute_epsilon(alpha,n,a,b):
+    return np.sqrt((b-a)**2*np.log(2/alpha)/(2*n))
+alpha = 0.05 #confidence interval
+n = numbers_arr.shape[0]
+a = 1 #minimum
+b = 69 #maximum
+delta = compute_epsilon(alpha,n,a,b)
 '''DOCUMENTATION
 https://www.statsmodels.org/devel/generated/statsmodels.stats.proportion.proportion_confint.html'''
 
@@ -100,23 +108,6 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html
 https://proclusacademy.com/blog/practical/normal-distribution-python-scipy/'''
 
 #Generators
-import random
-import sympy
-
-#Linear Congruent Generator
-'LCG'
-#gcd for c,m = 1
-r_list = list(range(size))
-r_list[0] = seed
-a = 4 * random.random(1,100) + 1
-c = sympy.randprime(1,100)
-m = 2**(sympy.randprime(1,100)) # m should be power of 2
-while c < seed and c != 2 :
-        c = sympy.randprime(1,100)
-while m < seed and m != c:    
-        m = 2**(sympy.randprime(1,100))
-for i in range(1,size):
-        r_list[i] = (((i * a) + c) % m) 
 
 #Uniform Distribution
         '''Following will create a uniform distribution based upon a list '''
@@ -138,6 +129,14 @@ for i in range(n):
     step = np.random.choice([-1,1],p=[0.5,0.5])
     start = start + step
     x.append(start)
+# Markov Transition Matrix
+S_n = [[p11,p12,p13,p14],[p21,p22,p23,p24],[p31,p32,p33,p34]]
+S_0 = [[1],[0],[0]] #zero state vectore
+S_n = S**('ntimes') * S_0 # Probability of transtition to a space after n times
+
+
+'''EXAMPLES OF TRANSITION MATRIXES
+https://ericmjl.github.io/essays-on-data-science/machine-learning/markov-models/'''
 
  #Tests
 'MSE'
@@ -148,6 +147,8 @@ MSE = mean_squared_error(Y_true,Y_pred)
 MSE = np.square(np.subtract(Y_true,Y_pred)).mean() 
 
 'Wald test'
+
+
 
 '''--------------------------------------------------------------------------'''
 '''Utils.py'''
