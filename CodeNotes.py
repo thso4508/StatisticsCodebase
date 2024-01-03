@@ -129,24 +129,59 @@ for i in range(n):
     step = np.random.choice([-1,1],p=[0.5,0.5])
     start = start + step
     x.append(start)
+
+
 # Markov Transition Matrix
-S_n = [[p11,p12,p13,p14],[p21,p22,p23,p24],[p31,p32,p33,p34]]
-S_0 = [[1],[0],[0]] #zero state vectore
-S_n = S**('ntimes') * S_0 # Probability of transtition to a space after n times
+    '''Given we have a set of probabilites of being in a region, transitioning and ending up at another region is determined by...'''
+    #   A   B   C
+S_n =
+'A'   [[p11,p12,p13],
+'B'   [p21,p22,p23],
+'C'   [p31,p32,p33]]
+S_0 = [1, 0, 0] #zero state vector if we are in region 1.
+S_0 = [0.2, 0.5, 0.3] #If we have probabilites of being in a region.
+S_n = S**('ntimes') * S_0 # Probability of transition to a space after n times
 
 
 '''EXAMPLES OF TRANSITION MATRIXES
+https://math.libretexts.org/Bookshelves/Applied_Mathematics/Applied_Finite_Mathematics_(Sekhon_and_Bloom)/10%3A_Markov_Chains/10.01%3A_Introduction_to_Markov_Chains
 https://ericmjl.github.io/essays-on-data-science/machine-learning/markov-models/'''
 
- #Tests
+ # Tests
 'MSE'
+mse = 0
+y_hat = X # the predicted  value
+for i in range(len(list)):
+   mse += (list[i] - y_hat)**2
+mse = mse/len(list) 
+
 from sklearn.metrics import mean_squared_error
 MSE = mean_squared_error(Y_true,Y_pred)
 
-#Also works
+'''Also works'''
 MSE = np.square(np.subtract(Y_true,Y_pred)).mean() 
 
-'Wald test'
+# Models
+from scipy import stats
+
+x = [5,7,8,7,2,17,2,9,4,11,12,9,6]
+y = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+
+slope, intercept, r, p, std_err = stats.linregress(x, y)
+
+def myfunc(x):
+  return slope * x + intercept
+speed = myfunc(10)
+
+'''Log regression'''
+from sklearn.linear_model import LogisticRegression
+import sklearn.model_selection as skl_ms
+X_train, X_test, Y_train, Y_test = skl_ms.train_test_split(X, Y, test_size=0.6)
+LogisticRegression.fit(X_train, Y_train)
+
+'''DOCUMENTATION 
+https://www.w3schools.com/python/python_ml_linear_regression.asp'''
+
 
 
 
